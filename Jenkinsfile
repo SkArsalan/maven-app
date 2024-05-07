@@ -1,31 +1,30 @@
-pipeline{
+pipeline {
     agent any
-    parameters{
-        choice{name: 'VERSION', choices: ['1.1.0','1.2.0','1.3.0'], description:''}
-        booleanParam{name:'executeTests', defaultValaue:true, description:''}
-
+    parameters {
+        choice(name: 'VERSION', choices: ['1.1.0','1.2.0','1.3.0'], description: '')
+        booleanParam(name: 'executeTests', defaultValue: true, description: '')
     }
 
-    stages{
-        stage("build"){
-            steps{
-                echo 'Bulding the application...'
+    stages {
+        stage("build") {
+            steps {
+                echo 'Building the application...'
             }
         }
-        stage("test"){
-            when{
-                expression{
-                    parameters.executeTests
+        stage("test") {
+            when {
+                expression {
+                    params.executeTests
                 }
             }
-            steps{
-                echo 'testing the application...'
+            steps {
+                echo 'Testing the application...'
             }
         }
-        stage("deploy"){
-            steps{
-                echo 'deploying the application...'
-                echo "deploying version ${parameters.VERSION}"
+        stage("deploy") {
+            steps {
+                echo 'Deploying the application...'
+                echo "Deploying version ${params.VERSION}"
             }
         }
     }
