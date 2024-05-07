@@ -10,6 +10,7 @@ def deployApp(){
     echo 'deploying the application'
     echo "deploying version ${params.VERSION}"
 }
+return this
 // def buildJar() {
 //     echo "building the application..."
 //     sh 'mvn package'
